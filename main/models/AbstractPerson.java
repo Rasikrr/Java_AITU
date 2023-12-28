@@ -1,6 +1,6 @@
 package main.models;
 
-public abstract class AbstractPerson {
+public abstract class AbstractPerson implements Payable {
     private static int counter = 0;
     private int id = 0;
     private String name;

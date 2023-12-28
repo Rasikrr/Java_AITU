@@ -2,6 +2,7 @@ package main.models;
 
 public class Student extends AbstractPerson{
 
+    final static double scholarship = 36660;
     private double gpa;
 
     public Student(){
@@ -27,5 +28,10 @@ public class Student extends AbstractPerson{
         this.gpa = gpa;
     }
 
-    
+    public double getPaymentAmount() throws LowGpaException{
+        if(gpa <= 2.67)
+            throw new LowGpaException("Study up, rookie. You don't get a scholarship.");
+        return scholarship;
+    }
+
 }

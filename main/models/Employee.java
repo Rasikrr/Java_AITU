@@ -40,7 +40,9 @@ public class Employee extends AbstractPerson {
         this.salary = salary;
     }
 
-    
+    public double getPaymentAmount(){
+        return this.getSalary();
+    }
 
 
 }
