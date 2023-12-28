@@ -28,10 +28,18 @@ public class Student extends AbstractPerson{
         this.gpa = gpa;
     }
 
-    public double getPaymentAmount() throws LowGpaException{
+    public double getPaymentAmount(){
         if(gpa <= 2.67)
-            throw new LowGpaException("Study up, rookie. You don't get a scholarship.");
+            return 0.0;
         return scholarship;
     }
+
+    // @Override
+    // public int compareTo(AbstractPerson person) {
+    //     if (person instanceof Student) {
+    //         return Double.compare(this.getPaymentAmount(), person.getPaymentAmount());
+    //     }
+    //     return super.compareTo(person);
+    // }
 
 }

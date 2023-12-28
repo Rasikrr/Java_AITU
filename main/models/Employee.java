@@ -44,5 +44,4 @@ public class Employee extends AbstractPerson {
         return this.getSalary();
     }
 
-
 }

@@ -1,6 +1,6 @@
 package main.models;
 
-public abstract class AbstractPerson implements Payable {
+public abstract class AbstractPerson implements Payable, Comparable<AbstractPerson> {
     private static int counter = 0;
     private int id = 0;
     private String name;
@@ -47,4 +47,8 @@ public abstract class AbstractPerson implements Payable {
         return "Student";
     }
 
+    @Override
+    public int compareTo(AbstractPerson person) {
+        return Double.compare(this.getPaymentAmount(), person.getPaymentAmount());
+    }
 }
