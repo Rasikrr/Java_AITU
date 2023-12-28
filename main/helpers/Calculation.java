@@ -1,8 +1,6 @@
 package main.helpers;
 
 public class Calculation {
-    private Calculation() {}
-
     public static double getMax(double[] arr) {
         if (arr.length == 0) {
             return 0;
