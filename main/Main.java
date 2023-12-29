@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +28,11 @@ public class Main {
 
     public static void printData(Iterable<AbstractPerson> people){
         for(AbstractPerson person: people){
-            System.out.println(person.toString() + " earns " + person.getPaymentAmount());
+            printPersonInfo(person);
         }
+    }
+
+    public static void printPersonInfo(AbstractPerson person){
+        System.out.println(person.toString() + " earns " + person.getPaymentAmount());
     }
 }
