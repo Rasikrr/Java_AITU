@@ -34,12 +34,9 @@ public class Student extends AbstractPerson{
         return scholarship;
     }
 
-    // @Override
-    // public int compareTo(AbstractPerson person) {
-    //     if (person instanceof Student) {
-    //         return Double.compare(this.getPaymentAmount(), person.getPaymentAmount());
-    //     }
-    //     return super.compareTo(person);
-    // }
+    @Override
+    public String getPosition(){
+        return "Student";
+    }
 
 }
