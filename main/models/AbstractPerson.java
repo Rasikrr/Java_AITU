@@ -43,7 +43,7 @@ public abstract class AbstractPerson implements Payable, Comparable<AbstractPers
         this.surname = surname;
     }
 
-    public String getPosition();
+    public abstract String getPosition();
 
     @Override
     public int compareTo(AbstractPerson person) {
