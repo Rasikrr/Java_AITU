@@ -1,14 +1,22 @@
 package rasik.group.AITU_answer.controller;
 
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import rasik.group.AITU_answer.entity.UserEntity;
 import rasik.group.AITU_answer.entity.repository.UserRepo;
 import rasik.group.AITU_answer.entity.service.UserService;
 import rasik.group.AITU_answer.exception.UserAlreadyExistException;
 import rasik.group.AITU_answer.exception.UserDoesNotExistException;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 @RestController
 @RequestMapping("/users")
@@ -18,7 +26,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity registration(@RequestBody UserEntity user){
+    public ResponseEntity registration(@Valid @RequestBody UserEntity user){
         try {
             userService.registration(user);
             return ResponseEntity.ok("Пользователь успешно создан");
@@ -38,5 +46,29 @@ public class UserController {
         } catch (Exception e){
             return ResponseEntity.badRequest().body("404");
         }
+    }
+
+//    @GetMapping("/{username}")
+//    public ResponseEntity getOneUserByUsername(@PathVariable String username){
+//        try{
+//            return ResponseEntity.ok(userService.getOneByUsername(username));
+//        } catch (UserDoesNotExistException e){
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        } catch (Exception e){
+//            return ResponseEntity.badRequest().body("404");
+//        }
+//    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException e){
+        Map<String, String> errors = new HashMap<>();
+
+        e.getBindingResult().getAllErrors().forEach((error) ->{
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 }
