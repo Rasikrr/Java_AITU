@@ -1,0 +1,3 @@
+-- INSERT INTO users VALUES
+-- (1, 'Rasikrr', 'rs.t.95@mail.ru', 'Software engineering', 2312),
+-- (2, 'Amir', 'amir_kurmanbekov@gmail.com', 'Software engineering', 2312);
