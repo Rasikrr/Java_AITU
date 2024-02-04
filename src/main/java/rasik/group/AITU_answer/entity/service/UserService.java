@@ -9,6 +9,10 @@ import rasik.group.AITU_answer.exception.UserAlreadyExistException;
 import rasik.group.AITU_answer.exception.UserDoesNotExistException;
 import rasik.group.AITU_answer.model.User;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UserService {
     @Autowired
@@ -38,5 +42,16 @@ public class UserService {
             throw new UserDoesNotExistException("Пользователя с таким именем не существует");
         }
         return User.toModel(user);
+    }
+
+    public Integer delete(Integer id){
+        userRepo.deleteById(id);
+        return id;
+    }
+
+    public List<User> getAll(){
+        List<UserEntity> userEntities = (List<UserEntity>) userRepo.findAll();
+        List<User> users = userEntities.stream().map(User::toModel).collect(Collectors.toList());
+        return users;
     }
 }

@@ -5,11 +5,15 @@ import rasik.group.AITU_answer.entity.UserEntity;
 public class User {
     private Integer id;
     private String username;
+    private String department;
+    private Integer group_number;
 
     public static User toModel(UserEntity userEntity){
         User user = new User();
         user.setId(userEntity.getId());
         user.setUsername(userEntity.getUsername());
+        user.setGroup_number(userEntity.getGroup_number());
+        user.setDepartment(userEntity.getDepartment());
         return user;
     }
 
@@ -29,5 +33,20 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+    public Integer getGroup_number() {
+        return group_number;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setGroup_number(Integer group_number) {
+        this.group_number = group_number;
     }
 }

@@ -13,8 +13,10 @@ import rasik.group.AITU_answer.entity.repository.UserRepo;
 import rasik.group.AITU_answer.entity.service.UserService;
 import rasik.group.AITU_answer.exception.UserAlreadyExistException;
 import rasik.group.AITU_answer.exception.UserDoesNotExistException;
+import rasik.group.AITU_answer.model.User;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -35,6 +37,11 @@ public class UserController {
         } catch (Exception e){
             return ResponseEntity.badRequest().body("ERROR");
         }
+    }
+
+    @GetMapping("/all")
+    public @ResponseBody List<User> getAll(){
+        return userService.getAll();
     }
 
     @GetMapping
@@ -58,6 +65,16 @@ public class UserController {
             return ResponseEntity.badRequest().body("404");
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteUser(@PathVariable Integer id){
+        try{
+            return ResponseEntity.ok(userService.delete(id));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body("404");
+        }
+    }
+
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

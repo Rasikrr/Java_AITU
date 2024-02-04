@@ -7,4 +7,6 @@ public interface UserRepo extends CrudRepository<UserEntity, Integer> {
     UserEntity findByUsername(String username);
     UserEntity findByEmail(String email);
 
+    Iterable<UserEntity> findAll();
+
 }
