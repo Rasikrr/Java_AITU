@@ -48,16 +48,16 @@ public class UserController {
         }
     }
 
-//    @GetMapping("/{username}")
-//    public ResponseEntity getOneUserByUsername(@PathVariable String username){
-//        try{
-//            return ResponseEntity.ok(userService.getOneByUsername(username));
-//        } catch (UserDoesNotExistException e){
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        } catch (Exception e){
-//            return ResponseEntity.badRequest().body("404");
-//        }
-//    }
+    @GetMapping("/{username}")
+    public ResponseEntity getOneUserByUsername(@PathVariable String username){
+        try{
+            return ResponseEntity.ok(userService.getOneByUsername(username));
+        } catch (UserDoesNotExistException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body("404");
+        }
+    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

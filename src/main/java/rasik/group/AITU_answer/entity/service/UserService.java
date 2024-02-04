@@ -32,11 +32,11 @@ public class UserService {
         return User.toModel(userRepo.findById(id).get());
     }
 
-//    public UserEntity getOneByUsername(String username) throws UserDoesNotExistException{
-//        UserEntity user = userRepo.findByUsername(username).get();
-//        if(user == null){
-//            throw new UserDoesNotExistException("ользователя с таким именем не существует");
-//        }
-//        return user;
-//    }
+    public User getOneByUsername(String username) throws UserDoesNotExistException{
+        UserEntity user = userRepo.findByUsername(username);
+        if(user == null){
+            throw new UserDoesNotExistException("Пользователя с таким именем не существует");
+        }
+        return User.toModel(user);
+    }
 }
