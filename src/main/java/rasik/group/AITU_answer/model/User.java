@@ -8,12 +8,14 @@ public class User {
     private String department;
     private Integer group_number;
 
+    private Integer course;
     public static User toModel(UserEntity userEntity){
         User user = new User();
         user.setId(userEntity.getId());
         user.setUsername(userEntity.getUsername());
         user.setGroup_number(userEntity.getGroup_number());
         user.setDepartment(userEntity.getDepartment());
+        user.setCourse(userEntity.getCourse());
         return user;
     }
 
@@ -40,6 +42,14 @@ public class User {
 
     public String getDepartment() {
         return department;
+    }
+
+    public Integer getCourse() {
+        return course;
+    }
+
+    public void setCourse(Integer course) {
+        this.course = course;
     }
 
     public void setDepartment(String department) {

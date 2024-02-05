@@ -37,11 +37,11 @@ public class UserService {
     }
 
     public User getOneByUsername(String username) throws UserDoesNotExistException{
-        UserEntity user = userRepo.findByUsername(username);
-        if(user == null){
+        UserEntity userEntity = userRepo.findByUsername(username);
+        if(userEntity == null){
             throw new UserDoesNotExistException("Пользователя с таким именем не существует");
         }
-        return User.toModel(user);
+        return User.toModel(userEntity);
     }
 
     public Integer delete(Integer id){
@@ -51,6 +51,12 @@ public class UserService {
 
     public List<User> getAll(){
         List<UserEntity> userEntities = (List<UserEntity>) userRepo.findAll();
+        List<User> users = userEntities.stream().map(User::toModel).collect(Collectors.toList());
+        return users;
+    }
+
+    public List<User> getByDepartmentAndGroup(String department){
+        List<UserEntity> userEntities = (List<UserEntity>) userRepo.findByDepartment(department);
         List<User> users = userEntities.stream().map(User::toModel).collect(Collectors.toList());
         return users;
     }

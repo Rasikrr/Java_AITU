@@ -4,9 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+import java.time.Year;
+import java.time.LocalDate;
 
 @Entity
 public class UserEntity {
@@ -22,6 +22,12 @@ public class UserEntity {
     @NotBlank(message = "password is required")
     @Size(min = 5, max=25, message = "password must be between 5 and 25 characters")
     private String password;
+
+    @NotNull(message = "choose course 1-3")
+    @Min(value = 1, message = "Minimum possible value - 1")
+    @Max(value = 3, message = "Maximum possible value - 3")
+    private Integer course;
+
     @NotNull(message = "email is required")
     @NotBlank(message = "email is required")
     private String email;
@@ -30,6 +36,8 @@ public class UserEntity {
     private String department;
     @NotNull(message = "group number is required")
     private Integer group_number;
+
+
 
     public UserEntity(){}
 
@@ -79,8 +87,15 @@ public class UserEntity {
         this.password = password;
     }
 
+    public Integer getCourse() {
+        return course;
+    }
+
+    public void setCourse(Integer course) {
+        this.course = course;
+    }
+
     public String toString(){
         return String.format("%s %s %s\n", getUsername(), getEmail(), getPassword());
     }
-
 }

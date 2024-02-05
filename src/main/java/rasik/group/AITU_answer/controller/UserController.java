@@ -75,6 +75,11 @@ public class UserController {
         }
     }
 
+    @GetMapping("/department/{department}")
+    public @ResponseBody List<User> getUserByDepartment(@PathVariable String department){
+        return userService.getByDepartmentAndGroup(department);
+    }
+
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
