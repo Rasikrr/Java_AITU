@@ -31,7 +31,7 @@ public class UserController {
     public ResponseEntity registration(@Valid @RequestBody UserEntity user){
         try {
             userService.registration(user);
-            return ResponseEntity.ok("Пользователь успешно создан.");
+            return ResponseEntity.ok("Пользователь успешно создан!");
         } catch (UserAlreadyExistException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e){
